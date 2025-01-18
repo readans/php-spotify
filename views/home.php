@@ -7,8 +7,8 @@ include 'templates/bar.php';
 <!-- START BODY -->
 
 <div class="mt-8 mb-10 max-w-7xl mx-auto">
-  <h2 class="text-3xl font-semibold mb-6 hover:underline">Lanzamientos de Albumes</h2>
-  <div class="flex flex-wrap">
+  <h2 class="text-3xl font-semibold mb-6 hover:underline">Nuevos Lanzamientos</h2>
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(0,200px))] justify-center">
     <?php foreach ($albums as $album) {
       $artists = implode(', ', array_column($album['artists'], 'name')); ?>
       <div class="p-2 hover:bg-black/10 group rounded-md w-[200px] flex flex-col gap-2 overflow-hidden [&>*]:cursor-pointer">

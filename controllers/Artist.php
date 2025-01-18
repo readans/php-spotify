@@ -18,7 +18,7 @@ class Artist
 
     $artist = $this->artist->getArtist($id);
     $albums = $this->artist->getArtistAlbums($id);
-    $topTracks = $this->artist->getArtistTopTracks($id)['tracks'];
+    $topTracks = $this->artist->getArtistTopTracks($id, 5)['tracks'];
 
     require 'views/artist.php';
   }

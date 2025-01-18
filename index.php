@@ -11,6 +11,7 @@ require_once 'services/OAuth2.php';
 /** MODELS */
 require_once 'models/Album.php';
 require_once 'models/Artist.php';
+require_once 'models/Me.php';
 
 /** CONTROLLERS */
 require_once 'controllers/Fallback.php';

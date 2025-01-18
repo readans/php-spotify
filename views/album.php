@@ -32,6 +32,9 @@ $artists = implode(', ', array_column($album['artists'], 'name'));
     <ul>
       <?php foreach ($album['tracks']['items'] as $tt) {
         $artists = implode(', ', array_column($tt['artists'], 'name'));
+        $seconds = $tt['duration_ms'] / 1000;
+        $minutes = floor($seconds / 60);
+        $seconds = floor($seconds) % 60;
       ?>
         <li class="flex items-center justify-between rounded-md hover:bg-[#a7aaa727] p-2 cursor-pointer [&>*]:cursor-pointer">
           <div class="flex items-center gap-2">
@@ -41,7 +44,7 @@ $artists = implode(', ', array_column($album['artists'], 'name'));
               <p class="text-nowrap w-full overflow-hidden text-ellipsis"><?= $artists ?></p>
             </div>
           </div>
-          <label class="justify-self-end flex-shrink-0" for=""><?= $tt['duration_ms'] / 100000 ?></label>
+          <label class="justify-self-end flex-shrink-0" for=""><?= $minutes ?>:<?= $seconds ?></label>
         </li>
       <?php } ?>
     </ul>
