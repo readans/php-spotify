@@ -1,0 +1,9 @@
+services:
+  php-spotify:
+    image: php:apache
+    container_name: php-spotify
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+      - ./apache-config.conf:/etc/apache2/conf-enabled/apache-config.conf

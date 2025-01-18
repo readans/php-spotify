@@ -1,0 +1,13 @@
+<?php
+$title = ''; // TITLE HERE
+include 'templates/header.php';
+
+?>
+
+<!-- START BODY -->
+
+<div></div>
+
+<!-- END BODY -->
+
+<?php include 'templates/footer.php'; ?>
