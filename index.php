@@ -10,12 +10,15 @@ require_once 'services/OAuth2.php';
 
 /** MODELS */
 require_once 'models/Album.php';
+require_once 'models/Artist.php';
 
 /** CONTROLLERS */
 require_once 'controllers/Fallback.php';
 require_once 'controllers/Login.php';
 require_once 'controllers/OAuth2.php';
 require_once 'controllers/Home.php';
+require_once 'controllers/Artist.php';
+require_once 'controllers/Album.php';
 
 session_start();
 
@@ -62,6 +65,20 @@ switch ($path) {
     $middlewares = [new Configuration\AuthMiddleware()];
     handleRequest($path, $middlewares, function () {
       $controller = new Controller\Home();
+      $controller->index();
+    });
+    break;
+  case '/artist':
+    $middlewares = [new Configuration\AuthMiddleware()];
+    handleRequest($path, $middlewares, function () {
+      $controller = new Controller\Artist();
+      $controller->index();
+    });
+    break;
+  case '/album':
+    $middlewares = [new Configuration\AuthMiddleware()];
+    handleRequest($path, $middlewares, function () {
+      $controller = new Controller\Album();
       $controller->index();
     });
     break;
