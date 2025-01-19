@@ -30,18 +30,24 @@ $artists = implode(', ', array_column($album['artists'], 'name'));
     </div>
 
     <ul>
-      <?php foreach ($album['tracks']['items'] as $tt) {
+      <?php foreach ($album['tracks']['items'] as $i => $tt) {
         $artists = implode(', ', array_column($tt['artists'], 'name'));
         $seconds = $tt['duration_ms'] / 1000;
         $minutes = floor($seconds / 60);
         $seconds = floor($seconds) % 60;
       ?>
-        <li class="flex items-center justify-between rounded-md hover:bg-[#a7aaa727] p-2 cursor-pointer [&>*]:cursor-pointer">
+        <li class="flex items-center justify-between rounded-md hover:bg-[#a7aaa727] p-2 cursor-pointer [&>*]:cursor-pointer group">
           <div class="flex items-center gap-2">
-            <img class="size-6 rounded-md" alt="">
+            <a class="size-6 grid place-items-center relative" href="<?= $tt['external_urls']['spotify'] ?>" target="_blank">
+              <label class="text-sm group-hover:opacity-0"><?= $i + 1 ?></label>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-player-play absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z" />
+              </svg>
+            </a>
             <div class="overflow-hidden">
-              <h6><?= $tt['name'] ?></h6>
-              <p class="text-nowrap w-full overflow-hidden text-ellipsis"><?= $artists ?></p>
+              <h4><?= $tt['name'] ?></h4>
+              <h6 class="text-nowrap w-full overflow-hidden text-ellipsis"><?= $artists ?></h6>
             </div>
           </div>
           <label class="justify-self-end flex-shrink-0" for=""><?= $minutes ?>:<?= $seconds ?></label>

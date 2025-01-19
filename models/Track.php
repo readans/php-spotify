@@ -4,9 +4,8 @@ namespace Models;
 
 use Services\Spotify;
 
-class Me
+class Track
 {
-
   private $spotify;
 
   public function __construct()
@@ -14,9 +13,5 @@ class Me
     $this->spotify = new Spotify();
   }
 
-  public function getProfile()
-  {
-    $res = $this->spotify->get("https://api.spotify.com/v1/me");
-    return $res;
-  }
+  public function recommendations() {}
 }

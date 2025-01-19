@@ -7,6 +7,7 @@ require 'configuration/Middleware.php';
 /** SERVICES */
 require_once 'services/HttpClient.php';
 require_once 'services/OAuth2.php';
+require_once 'services/Spotify.php';
 
 /** MODELS */
 require_once 'models/Album.php';

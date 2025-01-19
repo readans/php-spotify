@@ -5,11 +5,16 @@ namespace Services;
 class OAuth2
 {
 
+  private $client;
+
+  public function __construct()
+  {
+    $this->client = new HttpClient();
+  }
+
   public function callback($code)
   {
     $url = "https://accounts.spotify.com/api/token";
-
-    $client = new HttpClient();
 
     $body = [
       "code" => $code,
@@ -19,7 +24,7 @@ class OAuth2
 
     $headers = ["Authorization: Basic " . base64_encode(getenv('CLIENT_ID') . ":" . getenv('CLIENT_SECRET'))];
 
-    $res = $client->post($url, $body, $headers);
+    $res = $this->client->post($url, $body, $headers);
 
     return json_decode($res, true);
   }
@@ -28,8 +33,6 @@ class OAuth2
   {
     $url = "https://accounts.spotify.com/api/token";
 
-    $client = new HttpClient();
-
     $body = [
       "grant_type" => "refresh_token",
       "refresh_token" => $refreshToken,
@@ -37,7 +40,7 @@ class OAuth2
 
     $headers = ["Authorization: Basic " . base64_encode(getenv('CLIENT_ID') . ":" . getenv('CLIENT_SECRET'))];
 
-    $res = $client->post($url, $body, $headers);
+    $res = $this->client->post($url, $body, $headers);
 
     return json_decode($res, true);
   }

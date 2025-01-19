@@ -2,41 +2,32 @@
 
 namespace Models;
 
-use Services\HttpClient;
+use Services\Spotify;
 
 class Artist
 {
-  private $client;
+  private $spotify;
 
   public function __construct()
   {
-    $this->client = new HttpClient();
+    $this->spotify = new Spotify();
   }
 
   public function getArtist($id)
   {
-    $res = $this->client->get("https://api.spotify.com/v1/artists/" . $id, [
-      "Authorization: Bearer " . $_SESSION['ACCESS_TOKEN']
-    ]);
-
-    return json_decode($res, true);
+    $res = $this->spotify->get("https://api.spotify.com/v1/artists/" . $id);
+    return $res;
   }
 
   public function getArtistAlbums($id)
   {
-    $res = $this->client->get("https://api.spotify.com/v1/artists/" . $id . "/albums", [
-      "Authorization: Bearer " . $_SESSION['ACCESS_TOKEN']
-    ]);
-
-    return json_decode($res, true);
+    $res = $this->spotify->get("https://api.spotify.com/v1/artists/" . $id . "/albums");
+    return $res;
   }
 
   public function getArtistTopTracks($id)
   {
-    $res = $this->client->get("https://api.spotify.com/v1/artists/" . $id . "/top-tracks", [
-      "Authorization: Bearer " . $_SESSION['ACCESS_TOKEN']
-    ]);
-
-    return json_decode($res, true);
+    $res = $this->spotify->get("https://api.spotify.com/v1/artists/" . $id . "/top-tracks");
+    return $res;
   }
 }
